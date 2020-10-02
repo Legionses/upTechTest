@@ -1,0 +1,15 @@
+.searchList{
+    width: 130px;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin-left: 16px;
+    background: lavender;
+}
+.searchList__item:hover{
+    cursor: pointer;
+    border: 1px solid;
+}
+.inputWrap{
+    width: fit-content;
+}

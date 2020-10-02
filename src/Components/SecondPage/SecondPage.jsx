@@ -1,10 +1,15 @@
 import React from "react";
+import {connect} from "react-redux";
 
-export const SecondPage = ({}) => {
+export const Page = ({chosenCity}) => {
     return (
         <div>
-second
+            {chosenCity.displayName || ""}
         </div>
     );
 
 };
+
+export const SecondPage = connect(state => ({
+    chosenCity: state.search.chosenCity
+}))(Page);
