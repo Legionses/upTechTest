@@ -8,7 +8,7 @@ import {connect} from "react-redux";
         <header className="header">
             <div>
                 <span>Selected City:</span>
-                <span>{chosenCity?.displayName || ""}</span>
+                <span>{chosenCity?.defaultName || ""}</span>
             </div>
             <div className="header__links">
                 <Link to="/">

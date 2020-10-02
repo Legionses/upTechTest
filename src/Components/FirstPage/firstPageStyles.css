@@ -13,3 +13,10 @@
 .inputWrap{
     width: fit-content;
 }
+
+.inputWrap input::after{
+    width: 10px;
+    height: 15px;
+    content: " ";
+    color: red;
+}
