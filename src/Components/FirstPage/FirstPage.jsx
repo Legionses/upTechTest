@@ -10,7 +10,6 @@ const Page = ({
                   chooseCity,
                   eraseSearchedResults
               }) => {
-
     const debouncedFetch = useCallback(
         debounce(fetchCityData, 300),
         [],
@@ -18,6 +17,7 @@ const Page = ({
     const inputWrapRef = useRef(null);
 
     const [inputFocusStatus, setInputFocusStatus] = useState(false);
+    const [focusedListItem, setFocusedListItem] = useState(null);
 
     const [missingLetters, setMissingLetters] = useState("");
 
@@ -64,7 +64,7 @@ const Page = ({
             />
             {inputFocusStatus && searchRes.length > 0 && (<div>
                 <ul className="searchList">
-                    {searchRes.map((city) => {
+                    {searchRes.map((city, index) => {
                         const {positionId, defaultName} = city;
                         return (
                             <li
@@ -73,6 +73,9 @@ const Page = ({
                                 onClick={() => handleListItemClick(city)}
                                 onMouseOver={() => handleListItemHover(city.defaultName)}
                                 onMouseOut={() => handleListItemHover(null)}
+                                tabIndex="0"
+                                onFocus={() => setFocusedListItem(city)}
+                                onBlur={() => setFocusedListItem(null)}
                             >
                                 {defaultName}
                             </li>
