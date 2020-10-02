@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 export const Page = ({chosenCity}) => {
     return (
         <div>
-            {chosenCity.displayName || ""}
+            {chosenCity?.displayName || ""}
         </div>
     );
 
