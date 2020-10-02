@@ -19,6 +19,8 @@ const Page = ({
 
     const [inputFocusStatus, setInputFocusStatus] = useState(false);
 
+    const [missingLetters, setMissingLetters] = useState("");
+
     const [searchValue, setSearchValue] = useState("");
     const handleInputChange = ({target: {value}}) => {
         setSearchValue(value);
@@ -29,13 +31,22 @@ const Page = ({
     useEffect(() => {
         return () => {
             if (searchRes) eraseSearchedResults();
-            if (searchValue) setSearchValue("")
+            if (searchValue) setSearchValue("");
+            if (missingLetters) setMissingLetters("");
         }
     }, []);
 
     const handleListItemClick = (city) => {
         chooseCity(city);
+        setMissingLetters("");
         return setInputFocusStatus(false);
+    };
+    const handleListItemHover = cityName => {
+        if (!cityName) return setMissingLetters("");
+        const letterPos = cityName.toLowerCase().indexOf(searchValue);
+        const searchedValLength = searchValue.length;
+
+        return setMissingLetters(cityName.slice(letterPos + searchedValLength))
     };
 
     useOutsideHandle(inputWrapRef, () => setInputFocusStatus(false));
@@ -45,21 +56,25 @@ const Page = ({
             ref={inputWrapRef}
         >
             <input
+                type="text"
                 onFocus={() => setInputFocusStatus(true)}
-                value={searchValue}
+                value={`${searchValue}${missingLetters}`}
                 onChange={handleInputChange}
+                placeholder="Search the City"
             />
             {inputFocusStatus && searchRes.length > 0 && (<div>
                 <ul className="searchList">
                     {searchRes.map((city) => {
-                        const {positionId, displayName} = city;
+                        const {positionId, defaultName} = city;
                         return (
                             <li
                                 className="searchList__item"
                                 key={positionId}
                                 onClick={() => handleListItemClick(city)}
+                                onMouseOver={() => handleListItemHover(city.defaultName)}
+                                onMouseOut={() => handleListItemHover(null)}
                             >
-                                {displayName}
+                                {defaultName}
                             </li>
                         )
                     })}
