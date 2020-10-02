@@ -10,8 +10,12 @@
     cursor: pointer;
     border: 1px solid;
 }
+.searchList__item[tabindex]:focus{
+    background: gray;
+}
 .inputWrap{
     width: fit-content;
+    margin-left: 16px;
 }
 
 .inputWrap input::after{
