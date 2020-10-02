@@ -12,7 +12,7 @@ const Page = ({
               }) => {
 
     const debouncedFetch = useCallback(
-        debounce(fetchCityData, 500),
+        debounce(fetchCityData, 300),
         [],
     );
     const inputWrapRef = useRef(null);
@@ -25,6 +25,7 @@ const Page = ({
         debouncedFetch(value)
     };
 
+    // Erasing searched data and results on CWU;
     useEffect(() => {
         return () => {
             if (searchRes) eraseSearchedResults();

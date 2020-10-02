@@ -3,7 +3,7 @@ import {CHOOSE_CITY, ERASE_LIST, FETCH_CITY_DATA} from "../constatnts/searchCons
 
 export const fetchCityData = query => dispatch => {
     if (query.length === 0) return dispatch(eraseSearchedResults());
-    
+
     return getCityData(query)
         .then(res => res.json())
         .then((data) => {
