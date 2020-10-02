@@ -1,0 +1,20 @@
+
+.header {
+    display: flex;
+    height: 100px;
+    width: 100%;
+    background: lightgray;
+    align-items: center;
+    justify-content: space-between;
+    font-size: larger;
+}
+
+.header div:nth-child(1) {
+    margin-left: 16px;
+}
+.header div:nth-child(2) {
+    margin-right: 16px;
+}
+.header__links a:first-child{
+    margin-right: 16px;
+}
